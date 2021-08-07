@@ -4,9 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
+    // 0 = MainMenu
+    // 1 = SampleScene
+    // 2 = Credits
+    // 3 = AutoScroll
+
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
     public void Credits()
     {
