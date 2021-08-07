@@ -59,7 +59,7 @@ public class RhythmManager : MonoBehaviour
     {
         for (int i = 0; i < 128; ++i)
         {
-            Debug.DrawLine(new Vector3(i * m_SecondsPerBeat, -10, 0), new Vector3(i * m_SecondsPerBeat, 10, 0), Color.red);
+            Debug.DrawLine(new Vector3(i * m_SecondsPerBeat, -10, 0), new Vector3(i * m_SecondsPerBeat, 0, 0), Color.red);
         }
     }
 }
