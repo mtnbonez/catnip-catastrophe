@@ -30,4 +30,8 @@ public class MainMenu : MonoBehaviour
         AudioListener.pause = false;
         pauseMenu.SetActive(false);
     }
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
