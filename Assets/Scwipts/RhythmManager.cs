@@ -9,7 +9,10 @@ public class RhythmManager : MonoBehaviour
 
     public float m_SongBpm;
     public float m_OffsetToFirstBeat;
+
+    // Debug stuff
     public bool m_DebugSongBpmOverlayEnabled;
+    public int m_BeatsToDisplay;
 
     AudioSource m_SongSource;
     float m_SecondsPerBeat;
@@ -61,7 +64,7 @@ public class RhythmManager : MonoBehaviour
 
     void DrawDebugOverlay()
     {
-        for (int i = 0; i < 128; ++i)
+        for (int i = -m_BeatsToDisplay; i < m_BeatsToDisplay; ++i)
         {
             Debug.DrawLine(new Vector3(i * m_SecondsPerBeat * 6.25f, -10, 0), new Vector3(i * m_SecondsPerBeat * 6.25f, 0, 0), Color.red);
         }
