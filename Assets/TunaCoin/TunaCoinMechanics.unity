@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &76194243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4036781125778745084, guid: 795553141ac43b1418b8c8a1894938cf, type: 3}
+  m_PrefabInstance: {fileID: 4036781125552831727}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &196680207
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,8 +281,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1538078816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4036781124801058240, guid: 795553141ac43b1418b8c8a1894938cf, type: 3}
+  m_PrefabInstance: {fileID: 4036781125552831727}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1819202378 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4036781125224181669, guid: 795553141ac43b1418b8c8a1894938cf, type: 3}
@@ -286,7 +308,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3270673680737178665, guid: 31e87f801f3df174a8a9c68cb8889461, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3270673680737178665, guid: 31e87f801f3df174a8a9c68cb8889461, type: 3}
       propertyPath: m_LocalPosition.x
@@ -329,6 +351,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3270673680737178666, guid: 31e87f801f3df174a8a9c68cb8889461, type: 3}
+      propertyPath: rankT
+      value: 
+      objectReference: {fileID: 1538078816}
+    - target: {fileID: 3270673680737178666, guid: 31e87f801f3df174a8a9c68cb8889461, type: 3}
+      propertyPath: scoreT
+      value: 
+      objectReference: {fileID: 76194243}
+    - target: {fileID: 3270673680737178666, guid: 31e87f801f3df174a8a9c68cb8889461, type: 3}
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1819202378}
@@ -355,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4036781124856669132, guid: 795553141ac43b1418b8c8a1894938cf, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4036781124856669132, guid: 795553141ac43b1418b8c8a1894938cf, type: 3}
       propertyPath: m_AnchorMax.x

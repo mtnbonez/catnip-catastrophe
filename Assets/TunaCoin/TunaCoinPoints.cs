@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class TunaCoinPoints : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -15,7 +15,13 @@ public class TunaCoinPoints : MonoBehaviour
     [SerializeField]
     GameObject pauseMenu;
 
+    int score = 0;
 
+    [SerializeField]
+    Text scoreT;
+
+    [SerializeField]
+    Text rankT;
     void Start()
     {
         if (pauseMenu.activeInHierarchy)
@@ -24,13 +30,17 @@ public class TunaCoinPoints : MonoBehaviour
         }
         Time.timeScale = 1;
         AudioListener.pause = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        scoreT.GetComponent<UnityEngine.UI.Text>().text = score.ToString();
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            score++;
             if (!pauseMenu.activeInHierarchy)
             {
                 pauseMenu.SetActive(true);
@@ -44,5 +54,20 @@ public class TunaCoinPoints : MonoBehaviour
                 AudioListener.pause = false;
             }
         }
+
+        if (score == 10)
+            rankT.GetComponent<UnityEngine.UI.Text>().text = "E";
+
+        if(score == 15)
+            rankT.GetComponent<UnityEngine.UI.Text>().text = "D";
+
+        if(score == 16)
+            rankT.GetComponent<UnityEngine.UI.Text>().text = "C";
+
+        if(score == 17)
+            rankT.GetComponent<UnityEngine.UI.Text>().text = "B";
+
+        if(score == 18)
+            rankT.GetComponent<UnityEngine.UI.Text>().text = "A";
     }
 }
