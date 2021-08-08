@@ -7,12 +7,16 @@ public class PlayerController : MonoBehaviour
 {
 
     public float maxSpeed = 3.4f;
-    public float jumpHeight = 6.5f;
+    public float initJumpForce = 3f;
+    public float longJumpForce = 1f;
     public float gravityScale = 1.5f;
+    public float maxJumpForce = 10f;
     public Camera mainCamera;
 
     bool facingRight = true;
     bool isGrounded = false;
+    bool jumpKeyHeld = false;
+    bool isJumping = false;
     //bool isJumping = false;
     Vector3 cameraPos;
     Rigidbody2D r2d;
@@ -42,21 +46,46 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
-        } 
+            
+            if (isGrounded && !jumpKeyHeld)
+            {
+                isJumping = true;
+                r2d.velocity = new Vector2(r2d.velocity.x, r2d.velocity.y + initJumpForce);
+            }
+            
+            jumpKeyHeld = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            jumpKeyHeld = false;
+            isJumping = false;
+        }
 
-        anim.SetBool("isJumping", !isGrounded);
-
-        //anim.SetBool("isStopped", (r2d.velocity.x == 0 && r2d.velocity.y == 0));
-        
+        anim.SetBool("isJumping", isJumping);
 
         if (mainCamera)
         {
             mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
         }
 
+    }
+
+    void FixedUpdate()
+    {
+        if (isJumping)
+        {
+            if (r2d.velocity.y >= maxJumpForce)
+            {
+                isJumping = false;
+            }
+            else
+            {
+                //r2d.velocity = new Vector2(r2d.velocity.x, Mathf.Min(r2d.velocity.y + jumpForce, maxJumpForce));
+                r2d.velocity = new Vector2(r2d.velocity.x, r2d.velocity.y + longJumpForce);
+            }
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
