@@ -8,7 +8,8 @@ public class MainMenu : MonoBehaviour
     // 1 = SampleScene
     // 2 = Credits
     // 3 = AutoScroll
-
+    [SerializeField]
+    GameObject pauseMenu;
     public void PlayGame()
     {
         SceneManager.LoadScene(3);
@@ -20,5 +21,12 @@ public class MainMenu : MonoBehaviour
     public void MainMenuReturn()
     {
         SceneManager.LoadScene(0);
+        AudioListener.pause = false;
+    }
+    public void ClosePause()
+    {
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        pauseMenu.SetActive(false);
     }
 }
