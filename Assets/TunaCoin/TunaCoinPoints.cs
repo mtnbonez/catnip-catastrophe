@@ -22,6 +22,8 @@ public class TunaCoinPoints : MonoBehaviour
         {
             pauseMenu.SetActive(false);
         }
+        Time.timeScale = 1;
+        AudioListener.pause = false;
     }
 
     // Update is called once per frame
