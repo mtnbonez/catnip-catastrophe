@@ -17,6 +17,8 @@ public class RhythmManager : MonoBehaviour
     float m_SongPositionBeats;
     float m_DspSongTime;
 
+    int m_lastBeat = -1;
+
     void Awake()
     {
         if (m_Instance == null)
@@ -42,11 +44,13 @@ public class RhythmManager : MonoBehaviour
     {
         m_SongPositionSeconds = ((float)AudioSettings.dspTime - m_DspSongTime - m_OffsetToFirstBeat);
         m_SongPositionBeats = m_SongPositionSeconds / m_SecondsPerBeat;
+
         // Count whole numbered beats
-        Debug.Log("Beat: " + m_SongPositionBeats);
-        if (Mathf.Approximately(m_SongPositionBeats, Mathf.RoundToInt(m_SongPositionBeats)))
+        int currentBeatRounded = Mathf.RoundToInt(m_SongPositionBeats);
+        float diffToNextBeat = Mathf.Abs(m_SongPositionBeats - currentBeatRounded);
+        if (diffToNextBeat < 0.01f && currentBeatRounded > m_lastBeat)
         {
-            Debug.Log("Actual Beat: " + m_SongPositionBeats);
+            m_lastBeat = currentBeatRounded;
         }
 
         if (m_DebugSongBpmOverlayEnabled)
@@ -59,7 +63,7 @@ public class RhythmManager : MonoBehaviour
     {
         for (int i = 0; i < 128; ++i)
         {
-            Debug.DrawLine(new Vector3(i * m_SecondsPerBeat, -10, 0), new Vector3(i * m_SecondsPerBeat, 0, 0), Color.red);
+            Debug.DrawLine(new Vector3(i * m_SecondsPerBeat * 6.25f, -10, 0), new Vector3(i * m_SecondsPerBeat * 6.25f, 0, 0), Color.red);
         }
     }
 }

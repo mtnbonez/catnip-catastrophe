@@ -18,12 +18,7 @@ public class MapObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    void FixedUpdate()
-    {
         // Update all objects to move right-to-left
-        tr.position += Vector3.left * scrollSpeed;
+        tr.position += Vector3.left * scrollSpeed * Time.deltaTime;
     }
 }
