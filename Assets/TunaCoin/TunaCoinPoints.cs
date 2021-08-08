@@ -11,14 +11,36 @@ public class TunaCoinPoints : MonoBehaviour
     // also think about option for the escape menu to restart level or go back to main menu.
 
     // close the game loop so we can go from main menu to play, back to main menu.
+
+    [SerializeField]
+    GameObject pauseMenu;
+
+
     void Start()
     {
-        
+        if (pauseMenu.activeInHierarchy)
+        {
+            pauseMenu.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!pauseMenu.activeInHierarchy)
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+                AudioListener.pause = true;
+            }
+            else if (pauseMenu.activeInHierarchy)
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1;
+                AudioListener.pause = false;
+            }
+        }
     }
 }
