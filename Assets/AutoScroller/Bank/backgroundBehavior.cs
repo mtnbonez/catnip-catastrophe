@@ -16,7 +16,7 @@ public class backgroundBehavior : MonoBehaviour
 
         foreach (Transform child in t)
         {
-            if (child.gameObject.tag != "trigger")
+            if (child.gameObject.tag == "zoomBackground")
             {
                 child.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
             }
@@ -31,7 +31,7 @@ public class backgroundBehavior : MonoBehaviour
         {
             foreach (Transform child in t)
             {
-                if (child.gameObject.tag != "trigger" && child.transform.localScale.x >= 1.0f)
+                if (child.gameObject.tag == "zoomBackground" && child.transform.localScale.x >= 1.0f)
                 {
                     child.transform.localScale = new Vector3(child.transform.localScale.x - zoomOutSpeed, child.transform.localScale.y - zoomOutSpeed, child.transform.localScale.z - zoomOutSpeed);
                 }
