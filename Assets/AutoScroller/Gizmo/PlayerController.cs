@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float longJumpForce = 1f;
     public float gravityScale = 1.5f;
     public float maxJumpForce = 10f;
+    public float horizontalCatchup = 0.5f;
     public Camera mainCamera;
 
     bool facingRight = true;
@@ -20,11 +21,16 @@ public class PlayerController : MonoBehaviour
     //bool isJumping = false;
     Vector3 cameraPos;
     Rigidbody2D r2d;
+    public float r2dX;
+    //float r2dY;
     Transform t;
     Animator anim;
 
+    Transform childT;
+
     [SerializeField]
     GameObject gC;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +38,14 @@ public class PlayerController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
+        r2dX = r2d.position.x;
+        //r2dY = r2d.position.y;
         r2d.freezeRotation = true;
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         r2d.gravityScale = gravityScale;
         facingRight = t.localScale.x > 0;
+
+        childT = GetComponentInChildren<Transform>();
 
         if (mainCamera)
         {
@@ -46,6 +56,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             
@@ -63,7 +75,7 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
         }
 
-        anim.SetBool("isJumping", isJumping);
+        anim.SetBool("isJumping", !isGrounded);
 
         if (mainCamera)
         {
@@ -84,6 +96,18 @@ public class PlayerController : MonoBehaviour
             {
                 //r2d.velocity = new Vector2(r2d.velocity.x, Mathf.Min(r2d.velocity.y + jumpForce, maxJumpForce));
                 r2d.velocity = new Vector2(r2d.velocity.x, r2d.velocity.y + longJumpForce);
+            }
+        }
+        else //Else, do corrections
+        {
+            // Too far right, bring back left
+            if (r2d.position.x > r2dX)
+            {
+                r2d.velocity = new Vector2(r2d.velocity.x - horizontalCatchup, r2d.velocity.y);
+            }
+            else if (r2d.position.x < r2dX)
+            {
+                r2d.velocity = new Vector2(r2d.velocity.x + horizontalCatchup, r2d.velocity.y);
             }
         }
     }
