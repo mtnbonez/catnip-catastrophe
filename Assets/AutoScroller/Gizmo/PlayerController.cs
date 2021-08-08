@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
+//[RequireComponent(typeof(Rigidbody2D))]
+//[RequireComponent(typeof(BoxCollider2D))]
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,23 +12,20 @@ public class PlayerController : MonoBehaviour
     public Camera mainCamera;
 
     bool facingRight = true;
-    float moveDirection = 0;
     bool isGrounded = false;
+    //bool isJumping = false;
     Vector3 cameraPos;
     Rigidbody2D r2d;
-    BoxCollider2D mainCollider;
     Transform t;
-    SpriteRenderer spr;
     Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
-        spr = GetComponent<SpriteRenderer>();
+        //anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
-        mainCollider = GetComponent<BoxCollider2D>();
         r2d.freezeRotation = true;
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         r2d.gravityScale = gravityScale;
@@ -46,10 +43,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
-        }
+        } 
 
-        anim.SetBool("isWalking", (r2d.velocity.x != 0));
         anim.SetBool("isJumping", !isGrounded);
+
+        //anim.SetBool("isStopped", (r2d.velocity.x == 0 && r2d.velocity.y == 0));
+        
 
         if (mainCamera)
         {
@@ -58,32 +57,25 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        Bounds colliderBounds = mainCollider.bounds;
-        float colliderRadius = mainCollider.size.x * 0.4f * Mathf.Abs(transform.localScale.x);
-        Vector3 groundCheckPos = colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
-
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius);
-
-        isGrounded = false;
-        if (colliders.Length > 0)
+        if (collision.gameObject.tag == "ground")
         {
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                if (colliders[i] != mainCollider)
-                {
-                    isGrounded = true;
-                    break;
-                }
-            }
-
+            isGrounded = true;
         }
 
-        r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
-
-        Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(0, colliderRadius, 0), isGrounded ? Color.green : Color.red);
-        Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(colliderRadius, 0, 0), isGrounded ? Color.green : Color.red);
+        Debug.Log("Collision ENTER with: " + collision.gameObject.name);
     }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "ground")
+        {
+            isGrounded = false;
+        }
+
+        Debug.Log("Collision EXIT with: " + collision.gameObject.name);
+    }
+
 
 }
