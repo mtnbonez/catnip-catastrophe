@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AutoScroll.unity
     guid: 17c6eca1fb9421b43bd4484e21f88207
+  - enabled: 1
+    path: Assets/Scenes/TheGame.unity
+    guid: 363494fe0cd7fcd438f3ac6282b1036c
   m_configObjects: {}

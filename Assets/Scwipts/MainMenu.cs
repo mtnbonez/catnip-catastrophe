@@ -8,11 +8,12 @@ public class MainMenu : MonoBehaviour
     // 1 = SampleScene
     // 2 = Credits
     // 3 = AutoScroll
+    // 4 = TheGame
     [SerializeField]
     GameObject pauseMenu;
     public void PlayGame()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
     public void Credits()
     {
