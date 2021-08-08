@@ -15,7 +15,7 @@ public class TunaCoinPoints : MonoBehaviour
     [SerializeField]
     GameObject pauseMenu;
 
-    int score = 0;
+    public int score = 0;
 
     [SerializeField]
     Text scoreT;
@@ -30,7 +30,7 @@ public class TunaCoinPoints : MonoBehaviour
         }
         Time.timeScale = 1;
         AudioListener.pause = false;
-        
+
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class TunaCoinPoints : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            score++;
+
             if (!pauseMenu.activeInHierarchy)
             {
                 pauseMenu.SetActive(true);
@@ -55,19 +55,26 @@ public class TunaCoinPoints : MonoBehaviour
             }
         }
 
+
+
+
+
+
         if (score == 10)
             rankT.GetComponent<UnityEngine.UI.Text>().text = "E";
 
-        if(score == 15)
+        if (score == 20)
             rankT.GetComponent<UnityEngine.UI.Text>().text = "D";
 
-        if(score == 16)
+        if (score == 30)
             rankT.GetComponent<UnityEngine.UI.Text>().text = "C";
 
-        if(score == 17)
+        if (score == 17)
             rankT.GetComponent<UnityEngine.UI.Text>().text = "B";
 
-        if(score == 18)
+        if (score == 18)
             rankT.GetComponent<UnityEngine.UI.Text>().text = "A";
     }
+
+
 }

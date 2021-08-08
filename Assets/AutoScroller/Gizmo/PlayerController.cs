@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     Transform t;
     Animator anim;
 
+    [SerializeField]
+    GameObject gC;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,5 +79,13 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Collision EXIT with: " + collision.gameObject.name);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "TunaCoin")
+        {
+            gC.GetComponent<TunaCoinPoints>().score += 10;
 
+            Destroy(other.gameObject);
+        }
+    }
 }
