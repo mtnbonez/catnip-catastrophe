@@ -7,20 +7,30 @@ public class PlayerController : MonoBehaviour
 {
 
     public float maxSpeed = 3.4f;
-    public float jumpHeight = 6.5f;
+    public float initJumpForce = 3f;
+    public float longJumpForce = 1f;
     public float gravityScale = 1.5f;
+    public float maxJumpForce = 10f;
+    public float horizontalCatchup = 0.5f;
     public Camera mainCamera;
 
     bool facingRight = true;
     bool isGrounded = false;
+    bool jumpKeyHeld = false;
+    bool isJumping = false;
     //bool isJumping = false;
     Vector3 cameraPos;
     Rigidbody2D r2d;
+    public float r2dX;
+    //float r2dY;
     Transform t;
     Animator anim;
 
+    Transform childT;
+
     [SerializeField]
     GameObject gC;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +38,14 @@ public class PlayerController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
+        r2dX = r2d.position.x;
+        //r2dY = r2d.position.y;
         r2d.freezeRotation = true;
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         r2d.gravityScale = gravityScale;
         facingRight = t.localScale.x > 0;
+
+        childT = GetComponentInChildren<Transform>();
 
         if (mainCamera)
         {
@@ -42,21 +56,60 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        
+
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
-        } 
+            
+            if (isGrounded && !jumpKeyHeld)
+            {
+                isJumping = true;
+                r2d.velocity = new Vector2(r2d.velocity.x, r2d.velocity.y + initJumpForce);
+            }
+            
+            jumpKeyHeld = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            jumpKeyHeld = false;
+            isJumping = false;
+        }
 
         anim.SetBool("isJumping", !isGrounded);
-
-        //anim.SetBool("isStopped", (r2d.velocity.x == 0 && r2d.velocity.y == 0));
-        
 
         if (mainCamera)
         {
             mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
         }
 
+    }
+
+    void FixedUpdate()
+    {
+        if (isJumping)
+        {
+            if (r2d.velocity.y >= maxJumpForce)
+            {
+                isJumping = false;
+            }
+            else
+            {
+                //r2d.velocity = new Vector2(r2d.velocity.x, Mathf.Min(r2d.velocity.y + jumpForce, maxJumpForce));
+                r2d.velocity = new Vector2(r2d.velocity.x, r2d.velocity.y + longJumpForce);
+            }
+        }
+        else //Else, do corrections
+        {
+            // Too far right, bring back left
+            if (r2d.position.x > r2dX)
+            {
+                r2d.velocity = new Vector2(r2d.velocity.x - horizontalCatchup, r2d.velocity.y);
+            }
+            else if (r2d.position.x < r2dX)
+            {
+                r2d.velocity = new Vector2(r2d.velocity.x + horizontalCatchup, r2d.velocity.y);
+            }
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
