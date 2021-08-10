@@ -1,8 +1,8 @@
 # catnip-catastrophe
-Campfire's Loosely-based take on MS Paint Jam 2021!
+Campfire's Loosely-based take on [Paint Jam 2021](https://itch.io/jam/paint-jam-2021)!
 
 ## Windows Download!
-[Latest Windows Build](https://drive.google.com/file/d/1z5efoQqF0aOwTj_9laz5abPVtBXnrcGr/view?usp=sharing)
+[Latest Windows Build (.zip file)](https://drive.google.com/file/d/1z5efoQqF0aOwTj_9laz5abPVtBXnrcGr/view?usp=sharing)
 
 1. Download the .zip file in above link.
 2. Unzip the .zip somewhere safe.
@@ -12,8 +12,16 @@ Campfire's Loosely-based take on MS Paint Jam 2021!
 
 
 ## Meet Gizmo
+
+Gizmo is here to steal the 'nip from the Fat Cats.
+
 ![gizmoIdle](docs/gizmoIdleTest.gif?raw=true "gizmoIdle")
 
-![hellcat](Assets/Materials/Hellcat.png?raw=true "hellcat")
+
+## Meet Hellcat
+
+He has nothing to do with this game, but he's here.
+
+![hellcat](Assets/Materials/Hellcat.png "hellcat")
 
 
