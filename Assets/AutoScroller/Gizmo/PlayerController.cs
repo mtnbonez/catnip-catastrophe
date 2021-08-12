@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float maxJumpForce = 10f;
     public float horizontalCatchup = 0.5f;
     public Camera mainCamera;
+    public AudioSource aux;
 
     public bool isIdle = true;
 
@@ -70,8 +71,12 @@ public class PlayerController : MonoBehaviour
                 r2d.velocity = new Vector2(r2d.velocity.x, r2d.velocity.y + initJumpForce);
             }
 
-            isIdle = false; //and it will never be idle again
-            anim.SetBool("isIdle", false);
+            if (isIdle)
+            {
+                isIdle = false; //and it will never be idle again
+                anim.SetBool("isIdle", false);
+                aux.Play();
+            }
 
             jumpKeyHeld = true;
         }

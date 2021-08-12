@@ -39,7 +39,9 @@ public class RhythmManager : MonoBehaviour
 
         m_DspSongTime = (float)AudioSettings.dspTime;
 
-        m_SongSource.Play();
+        // We're letting the cat play the music :3
+        //m_SongSource.Play();
+        
     }
 
     // Update is called once per frame

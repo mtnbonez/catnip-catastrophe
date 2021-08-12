@@ -5034,6 +5034,7 @@ MonoBehaviour:
   maxJumpForce: 10
   horizontalCatchup: 0.05
   mainCamera: {fileID: 0}
+  aux: {fileID: 1576388655}
   isIdle: 1
   r2dX: 0
   gC: {fileID: 0}
@@ -6842,7 +6843,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 384b9ad66d3fd0744934174179aae70f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.775
   m_Pitch: 1
   Loop: 0
