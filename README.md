@@ -2,7 +2,7 @@
 Campfire's loosely-based take on [Paint Jam 2021](https://itch.io/jam/paint-jam-2021)!
 
 ## Windows Download!
-[Latest Windows Build (.zip file)](https://drive.google.com/file/d/1z5efoQqF0aOwTj_9laz5abPVtBXnrcGr/view?usp=sharing)
+[Latest Windows Build (.zip file)](https://drive.google.com/drive/folders/1FTIlDifoLz3TyrDfyTWJghnxHOaTZbv8?usp=sharing)
 
 1. Download the .zip file in above link.
 2. Unzip the .zip somewhere safe.
