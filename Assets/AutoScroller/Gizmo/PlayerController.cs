@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour
     public float horizontalCatchup = 0.5f;
     public Camera mainCamera;
 
+    public bool isIdle = true;
+
     bool facingRight = true;
-    bool isGrounded = false;
+    bool isGrounded = true;
     bool jumpKeyHeld = false;
     bool isJumping = false;
     //bool isJumping = false;
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
         r2dX = r2d.position.x;
         //r2dY = r2d.position.y;
         r2d.freezeRotation = true;
+        r2d.simulated = false;
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         r2d.gravityScale = gravityScale;
         facingRight = t.localScale.x > 0;
@@ -51,22 +54,25 @@ public class PlayerController : MonoBehaviour
         {
             cameraPos = mainCamera.transform.position;
         }
+
+        anim.SetBool("isIdle", true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            
-            if (isGrounded && !jumpKeyHeld)
+            if (isGrounded && !jumpKeyHeld && !isIdle)
             {
                 isJumping = true;
                 r2d.velocity = new Vector2(r2d.velocity.x, r2d.velocity.y + initJumpForce);
             }
-            
+
+            isIdle = false; //and it will never be idle again
+            anim.SetBool("isIdle", false);
+
             jumpKeyHeld = true;
         }
         else if (Input.GetKeyUp(KeyCode.W))
@@ -86,6 +92,17 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isIdle)
+        {
+            //no physics updates
+            r2d.simulated = false;
+            return;
+        }
+        else
+        {
+            r2d.simulated = true;
+        }
+
         if (isJumping)
         {
             if (r2d.velocity.y >= maxJumpForce)

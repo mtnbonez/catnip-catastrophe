@@ -5,6 +5,9 @@ using UnityEngine;
 public class MapObject : MonoBehaviour
 {
     public float scrollSpeed = 1.0f;
+    //public float globalSpeedPercent = 0;
+
+    public PlayerController player;
 
     Transform tr;
 
@@ -18,7 +21,10 @@ public class MapObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Update all objects to move right-to-left
-        tr.position += Vector3.left * scrollSpeed * Time.deltaTime;
+        if (!player.isIdle)
+        {
+            // Update all objects to move right-to-left
+            tr.position += Vector3.left * scrollSpeed * Time.deltaTime; // * globalSpeedPercent;
+        }
     }
 }
