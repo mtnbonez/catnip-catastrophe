@@ -549,6 +549,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4036781124856669170, guid: 795553141ac43b1418b8c8a1894938cf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4036781125224181669, guid: 795553141ac43b1418b8c8a1894938cf, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2895,7 +2899,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.63
+  orthographic size: 9.17
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
