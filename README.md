@@ -1,3 +1,6 @@
+
+![catnipDemo4](docs/catnipDemo4.gif?raw=true "catnipDemo4")
+
 # catnip-catastrophe
 Campfire's loosely-based take on [Paint Jam 2021](https://itch.io/jam/paint-jam-2021)!
 
@@ -17,17 +20,11 @@ Gizmo is here to steal the 'nip from the Fat Cats.
 
 ![gizmoIdle](docs/gizmoIdleTest.gif?raw=true "gizmoIdle")
 
-## Gizmo In Action!
-
-![catnipDemo4](docs/catnipDemo4.gif?raw=true "catnipDemo4")
-
-
 ## Meet Hellcat
 
 He has nothing to do with this game, but he's here.
 
 ![hellcat](Assets/Materials/Hellcat.png "hellcat")
-
 
 ## Gizmo Go Fast (bugs are fun)
 
