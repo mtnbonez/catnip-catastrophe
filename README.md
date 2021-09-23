@@ -28,4 +28,4 @@ He has nothing to do with this game, but he's here.
 
 ## Gizmo Go Fast (bugs are fun)
 
-![gizmoOnTheSmokes](docs/gizmoOnTheSmokes.gif?raw=true "gizmoOnTheSmokes")
+![gizmoGoFast](docs/gizmoGoFast.gif?raw=true "gizmoGoFast")
